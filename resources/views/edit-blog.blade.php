@@ -1,0 +1,43 @@
+@extends('layout.admin')
+@section('content')
+<form action="{{ route('update-blog', ['id' => $data['blog']->id]) }}" method="POST">
+   @csrf
+   @if ($errors->any())
+   <div class="alert alert-danger">
+      <ul>
+         @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+         @endforeach
+      </ul>
+   </div>
+   @endif
+
+
+   <div class="form-group">
+      <label class="col-sm-2 col-sm-2 control-label">Title</label>
+      <div class="col-sm-10">
+         <input type="text" name="title" class="form-control" value="{{$data['blog']->title}}">
+      </div>
+   </div>
+
+   <div class="form-group">
+      <label class="col-sm-2 col-sm-2 control-label">Author</label>
+      <div class="col-sm-10">
+         <input type="text" name="author" class="form-control" value="{{$data['blog']->author}}">
+      </div>
+   </div>
+
+   <div class="form-group">
+      <label class="col-sm-2 col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+          <textarea rows="5" cols="20" class="form-control" name="description">{{$data['blog']->description}}</textarea>
+      </div>
+   </div>
+  
+   <button type="submit" class="btn btn-success btnSubmit">Save</button>
+</form>
+</div>
+
+
+
+@endsection
